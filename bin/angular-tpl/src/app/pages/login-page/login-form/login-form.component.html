@@ -1,0 +1,18 @@
+<div class="form">
+	 <form method="post" [formGroup]="loginForm">
+   <p class="message">{{ message }}</p>
+    <input 
+      type="text" 
+      formControlName="username"
+      placeholder="ユーザ名"
+    />
+    <input 
+      type="password" 
+      formControlName="password"
+      placeholder="パスワード"
+    />
+    <button type="button" (click)="onClick($event)">ログイン</button>
+    <p class="message">アカウントをお持ちでない方は
+      <a href="signup">アカウント登録</a></p>
+  </form>
+</div>

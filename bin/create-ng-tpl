@@ -1,0 +1,27 @@
+#!/bin/bash
+
+APP_NAME=${1:-frontend}
+
+CURRENT_DIR=$(pwd)
+SELF_DIR=$(cd $(dirname $0); pwd)
+
+npx -p @angular/cli ng new $APP_NAME
+
+cd $APP_NAME
+
+yes | rm -r src .
+
+cp -r $SELF_DIR/angular-tpl/src .
+
+for fpass in `find src -name "*.*"` src
+do sed -i "" s/AngularTpl/$APP_NAME/g $fpass
+done
+
+echo "自動生成コマンド"
+echo "npx -p @angular/cli ng g <schematic> [options]"
+echo "npx -p @angular/cli ng g component ..."
+echo "npx -p @angular/cli ng g service ..."
+echo "npx -p @angular/cli ng g module ..."
+
+echo "実行"
+echo "npx -p @angular/cli ng serve --proxy-config src/proxy.conf.json"
